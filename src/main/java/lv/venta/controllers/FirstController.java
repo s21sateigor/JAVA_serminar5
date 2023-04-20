@@ -23,5 +23,7 @@ public class FirstController {
 		return "msg-page";//will show msg-page.html
 	}
 	
+	//TODO Product class - title, description, price, quantity
+	//TODO controller function which will send new product to frontend
 
 }
