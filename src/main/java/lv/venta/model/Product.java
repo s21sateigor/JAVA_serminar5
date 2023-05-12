@@ -1,25 +1,37 @@
 package lv.venta.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+@Table(name = "product_table") //this will be a table in DB
+@Entity
 public class Product {
+
+	@Column(name = "Title") // H2 title
 	@NotNull
 	@Size(min = 3, max = 130)
-	@Pattern(regexp = "[A-Z]{1}[a-z\\ ]+") //only latin letters
+	@Pattern(regexp = "[A-Z]{1}[a-z\\ ]+", message = "Only Latin letters and space") //only latin letters
 	private String title;
 
+	@Column(name = "Description")
 	@NotNull
 	@Size(min = 5, max = 400)
 	@Pattern(regexp = "[A-Z]{1}[a-z0-9\\ ]+") //only latin letters
 	private String description;
 
+	@Column(name = "Price")
 	@Min(0)
 	@Max(10000)
 	private float price;
 
+	@Column(name = "Quantity")
 	@Min(0)
 	@Max(1000000)
 	private int quantity;
+
+	@Column(name = "Id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private static long idCounter = 1;
 	public String getTitle() {
