@@ -130,22 +130,27 @@ public class FirstController {
 	}
 	
 	@PostMapping("/update-product/{id}")
-	public String postUpdateProductFunc(@PathVariable("id") long id, Product product)//edited product
+	public String postUpdateProductFunc(@PathVariable("id") long id, @Valid Product product, BindingResult result)//edited product
 	{
-		for(Product temp: CRUDservice.retrieveAllproducts()) {
-			if(temp.getId() == id) {
-				temp.setTitle(product.getTitle());
-				temp.setDescription(product.getDescription());
-				temp.setPrice(product.getPrice());
-				temp.setQuantity(product.getQuantity());
-				
-				
-				return "redirect:/all-products/"+id; //will call localhost:8080/all-products/2 endpoint
+		if(!result.hasErrors()){
+			for(Product temp: CRUDservice.retrieveAllproducts()) {
+				if(temp.getId() == id) {
+					temp.setTitle(product.getTitle());
+					temp.setDescription(product.getDescription());
+					temp.setPrice(product.getPrice());
+					temp.setQuantity(product.getQuantity());
+
+
+					return "redirect:/all-products/"+id; //will call localhost:8080/all-products/2 endpoint
 				}
-			
+
 			}
-		
-		return "redirect:/error"; //will call localhost:8080/error
+
+			return "redirect:/error"; //will call localhost:8080/error
+		} else {
+			return "update-product-page";
+		}
+
 		
 	}
 
