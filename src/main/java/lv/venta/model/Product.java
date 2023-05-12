@@ -1,8 +1,21 @@
 package lv.venta.model;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class Product {
+	@NotNull
+	@Size(min = 3, max = 130)
+	@Pattern(regexp = "[A-Z]{1}[a-z\\ ]+") //only latin letters
 	private String title;
+
+	@NotNull
+	@Size(min = 5, max = 400)
+	@Pattern(regexp = "[A-Z]{1}[a-z0-9\\ ]+") //only latin letters
 	private String description;
+
+
 	private float price;
 	private int quantity;
 	private long id;
