@@ -18,7 +18,7 @@ public class Product {
 	private float price;
 
 	@Min(0)
-	@Max()
+	@Max(1000000)
 	private int quantity;
 	private long id;
 	private static long idCounter = 1;
