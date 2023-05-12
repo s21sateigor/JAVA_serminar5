@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 bin/
 
+.idea/
 .mvn/
 mvnw
 mvnw.cmd
